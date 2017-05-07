@@ -19,7 +19,5 @@
   "devDependencies": {
     "electron": "~1.6.2"
   },
-  "dependencies": {
-    "d3": "^4.8.0"
-  }
+  "dependencies": {}
 }
