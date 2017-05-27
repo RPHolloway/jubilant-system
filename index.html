@@ -1,16 +1,27 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Precision Ammeter</title>
-  </head>
-  <body>
-    <svg width="960" height="500"></svg>
-    <script src="./lib/d3.v4.min.js"></script>
-  </body>
+<html lang="en" ng-app="myApp" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <script>
-    // You can also require other files to run in this process
-    require('./renderer.js')
-  </script>
+  <script src="node_modules/angular/angular.js"></script>
+  <script src="node_modules/angular-route/angular-route.js"></script>
+  <script src="app.js"></script>
+  <script src="view1/view1.js"></script>
+  <script src="view2/view2.js"></script>
+
+  <!-- Reference n3-line-chart -->
+  <script src="node_modules/n3-charts/build/LineChart.js"></script>
+  <link rel="stylesheet" href="node_modules/n3-charts/build/LineChart.css">
+
+  <!-- Reference chart.js -->
+  <script src="node_modules/chart.js/dist/Chart.bundle.js"></script>
+  <script src="node_modules/chartjs-plugin-zoom/chartjs-plugin-zoom.min.js"></script>
+</head>
+<body>
+  <div ng-view></div>
+</body>
 </html>
