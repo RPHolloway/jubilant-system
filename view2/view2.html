@@ -1,6 +1,9 @@
 <link rel="stylesheet" href="node_modules/angular-material/angular-material.css">
 
-<canvas id="linechart"></canvas>
-<md-button class="md-fab md-primary" ng-click="click()" aria-label="Refresh">
+<div class="chart-container" style="position: relative; height:75vh; width:100vw">
+    <canvas id="linechart"></canvas>
+</div>
+
+<md-button class="md-fab md-primary" style="position: absolute; bottom: 0px" ng-click="click()" aria-label="Refresh">
     <md-icon md-svg-src="img/refresh.svg" style="fill: white;"></md-icon>
 </md-button>
