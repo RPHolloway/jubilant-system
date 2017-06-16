@@ -21,8 +21,11 @@
   },
   "dependencies": {
     "angular": "^1.6.4",
+    "angular-animate": "^1.6.4",
+    "angular-aria": "^1.6.4",
+    "angular-material": "^1.1.4",
     "angular-route": "^1.6.4",
-    "chartjs-plugin-zoom": "^0.4.5",
+    "chartjs-plugin-zoom": "*",
     "hammerjs": "^2.0.8",
     "n3-charts": "^2.0.28"
   }

@@ -2,7 +2,7 @@
 var chart = require('chart.js');
 require('chartjs-plugin-zoom')
 
-angular.module('myApp.view2', ['ngRoute'])
+angular.module('myApp.view2', ['ngRoute', 'ngMaterial'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/view2', {
@@ -16,7 +16,11 @@ angular.module('myApp.view2', ['ngRoute'])
   var Size = windows[0].getSize();
   var ctx = document.getElementById("linechart");
   ctx.style.width = Size[0] - 50 + "px";
-  ctx.style.height = Size[1] - 100 + "px";
+  ctx.style.height = Size[1] - 150 + "px";
+
+  $scope.click = function click() {
+    linechart.resetZoom();
+  };
 
   var linechart = new chart(ctx, {
     type: 'bar',
