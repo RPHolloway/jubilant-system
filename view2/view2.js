@@ -38,11 +38,11 @@ angular.module('myApp.view2', ['ngRoute', 'ngMaterial'])
         duration: 0
       },
       pan: {
-        enabled: true,
+        enabled: false,
         mode: 'x'
       },
       zoom: {
-        enabled: true,
+        enabled: false,
         sensitivity: .01,
         mode: 'x',
       },
@@ -63,23 +63,35 @@ angular.module('myApp.view2', ['ngRoute', 'ngMaterial'])
   });
 
   // Spoof data
-  $interval(spoofData, 100);
+  $interval(spoofData, 10);
   var frequency = 10;
   var amplitude = 1;
   var t = 0;
   var idx = 0;
+  var bufferSize = 100;
   function spoofData() {
       linechart.data.labels.push(t.toFixed(2));
       linechart.data.datasets[0].data.push(Math.sin(frequency*t)*amplitude);
       t += .01;
 
-      if(idx > 100)
+      if(idx > bufferSize)
       {
-          linechart.options.scales.xAxes[0].ticks.min = linechart.data.labels[idx-100];
+          linechart.options.scales.xAxes[0].ticks.min = linechart.data.labels[idx-bufferSize];
           linechart.options.scales.xAxes[0].ticks.max = linechart.data.labels[idx];
       }
       idx++;
-
       linechart.update();
   }
+
+  var xZoom = function(event) {
+				if (event.deltaY < 0) {
+					bufferSize = Math.floor(bufferSize * 1.1);
+				} else {
+					bufferSize = Math.floor(bufferSize * 0.9);
+				}
+				// Prevent the event from triggering the default behavior (eg. Content scrolling).
+				event.preventDefault();
+			};
+
+  document.addEventListener('wheel', xZoom);
 }]);
