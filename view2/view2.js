@@ -80,6 +80,14 @@ angular.module('myApp.view2', ['ngRoute', 'ngMaterial'])
           linechart.options.scales.xAxes[0].ticks.max = linechart.data.labels[idx];
       }
       idx++;
+
+      if(idx > 500)
+      {
+          linechart.data.labels.shift();
+          linechart.data.datasets[0].data.shift();
+          idx--;
+      }
+
       linechart.update();
   }
 
@@ -93,6 +101,14 @@ angular.module('myApp.view2', ['ngRoute', 'ngMaterial'])
           if (bufferSize < 10)
             bufferSize = 10
 				}
+
+        if(bufferSize < 10)
+           bufferSize = 10;
+        else if(bufferSize > linechart.data.labels.length)
+        {
+           bufferSize = linechart.data.labels.length;
+        }    
+
 				// Prevent the event from triggering the default behavior (eg. Content scrolling).
 				event.preventDefault();
 			};
