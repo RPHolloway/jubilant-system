@@ -86,8 +86,12 @@ angular.module('myApp.view2', ['ngRoute', 'ngMaterial'])
   var xZoom = function(event) {
 				if (event.deltaY < 0) {
 					bufferSize = Math.floor(bufferSize * 1.1);
+          if (bufferSize > linechart.data.labels.length)
+            bufferSize = linechart.data.labels.length
 				} else {
 					bufferSize = Math.floor(bufferSize * 0.9);
+          if (bufferSize < 10)
+            bufferSize = 10
 				}
 				// Prevent the event from triggering the default behavior (eg. Content scrolling).
 				event.preventDefault();
