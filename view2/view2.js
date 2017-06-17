@@ -23,7 +23,7 @@ angular.module('myApp.view2', ['ngRoute', 'ngMaterial'])
   };
 
   var linechart = new chart(ctx, {
-    type: 'bar',
+    type: 'line',
     responsive: true,
     data: {
       labels: [0],
@@ -43,19 +43,19 @@ angular.module('myApp.view2', ['ngRoute', 'ngMaterial'])
       },
       zoom: {
         enabled: true,
-        sensitivity: .1,
+        sensitivity: .01,
         mode: 'x',
       },
       scales: {
         yAxes: [{
           ticks: {
-            beginAtZero: true
+            beginAtZero: true,
           }
         }],
         xAxes: [{
            ticks: {
              autoSkip: true,
-             maxTicksLimit: 25
+             maxTicksLimit: 25,
            }
         }]
       }
@@ -67,10 +67,19 @@ angular.module('myApp.view2', ['ngRoute', 'ngMaterial'])
   var frequency = 10;
   var amplitude = 1;
   var t = 0;
+  var idx = 0;
   function spoofData() {
       linechart.data.labels.push(t.toFixed(2));
       linechart.data.datasets[0].data.push(Math.sin(frequency*t)*amplitude);
       t += .01;
+
+      if(idx > 100)
+      {
+          linechart.options.scales.xAxes[0].ticks.min = linechart.data.labels[idx-100];
+          linechart.options.scales.xAxes[0].ticks.max = linechart.data.labels[idx];
+      }
+      idx++;
+
       linechart.update();
   }
 }]);
